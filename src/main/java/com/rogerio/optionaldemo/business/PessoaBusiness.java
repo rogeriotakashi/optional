@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
+
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +21,9 @@ public class PessoaBusiness {
     private final ModelMapper modelMapper;
 
     public List<PessoaDTO> findAll() {
-        List<Pessoa> pessoas = pessoaRepository.findAll();
+        List<Pessoa> pessoaList = pessoaRepository.findAll();
 
-        return pessoas.stream()
+        return pessoaList.stream()
                 .map(this::toPessoaDTO)
                 .collect(toList());
     }
@@ -32,26 +32,26 @@ public class PessoaBusiness {
         Pessoa pessoa = pessoaRepository.findById(id);
 
         if (pessoa == null) {
-            pessoa = createPessoaDefault();
+            throw new NoSuchElementException();
         }
 
         return toPessoaDTO(pessoa);
     }
 
-    public String findByNomeAndIdade(String nome, long idade) {
+    public PessoaDTO findByNomeAndIdade(String nome, long idade) {
         Pessoa pessoa = pessoaRepository.findByNomeAndIdade(nome, idade);
 
         if (pessoa == null) {
-            throw new NoSuchElementException();
+            pessoa = createPessoaDefault(nome, idade);
         }
 
-        return pessoa.getNome().toUpperCase();
+        return toPessoaDTO(pessoa);
     }
 
-    private Pessoa createPessoaDefault() {
+    private Pessoa createPessoaDefault(String nome, Long idade) {
         Pessoa pessoa = new Pessoa();
-        pessoa.setNome("Nome Default");
-        pessoa.setIdade(20L);
+        pessoa.setNome(nome);
+        pessoa.setIdade(idade);
         pessoa.setTipoPessoa(1L);
 
         return pessoaRepository.save(pessoa);
@@ -60,4 +60,5 @@ public class PessoaBusiness {
     private PessoaDTO toPessoaDTO(Pessoa pessoa){
         return modelMapper.map(pessoa, PessoaDTO.class);
     }
+
 }

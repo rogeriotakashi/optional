@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS PESSOA;
+DROP TABLE IF EXISTS CONTA;
 
 CREATE TABLE PESSOA (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -7,9 +8,16 @@ CREATE TABLE PESSOA (
   tipo_pessoa VARCHAR(10)
 );
 
+CREATE TABLE CONTA (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_pessoa INT UNIQUE,
+  agencia INTEGER,
+  num_conta VARCHAR(10)
+);
+
 
 INSERT INTO PESSOA (nome,idade,tipo_pessoa) VALUES
-  ('Rogerio',24, 1);
+('Rogerio',24, 1);
 
 INSERT INTO PESSOA (nome,idade,tipo_pessoa) VALUES
 ('Carlos',30, 2);

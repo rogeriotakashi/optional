@@ -1,7 +1,7 @@
 package com.rogerio.optionaldemo.controller;
 
-import com.rogerio.optionaldemo.business.PessoaBusiness;
 import com.rogerio.optionaldemo.dtos.PessoaDTO;
+import com.rogerio.optionaldemo.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,20 +13,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PessoaController {
 
-    private final PessoaBusiness pessoaBusiness;
+    private final PessoaService pessoaService;
 
     @GetMapping("/")
     public List<PessoaDTO> findAll(){
-        return pessoaBusiness.findAll();
+        return pessoaService.findAll();
     }
 
     @GetMapping("/pessoa")
     public PessoaDTO searchById(@RequestParam(name = "id") long id){
-        return pessoaBusiness.findById(id);
+        return pessoaService.findById(id);
     }
 
     @GetMapping("/pessoa-upppercase")
-    public String searchByNameUpppercase(@RequestParam(name = "nome") String nome, @RequestParam(name = "idade") long idade){
-        return pessoaBusiness.findByNomeAndIdade(nome, idade);
+    public PessoaDTO searchByNameUpppercase(@RequestParam(name = "nome") String nome, @RequestParam(name = "idade") long idade){
+        return pessoaService.findByNomeAndIdade(nome, idade);
     }
 }
