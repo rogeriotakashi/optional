@@ -13,4 +13,5 @@ public class PessoaDTO {
     private long id;
     private String nome;
     private long idade;
+    private String tipoPessoa;
 }

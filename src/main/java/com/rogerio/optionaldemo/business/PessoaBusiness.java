@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 @RequiredArgsConstructor
 public class PessoaBusiness {
@@ -23,17 +25,36 @@ public class PessoaBusiness {
 
         return pessoas.stream()
                 .map(this::toPessoaDTO)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public PessoaDTO findById(long id) {
         Pessoa pessoa = pessoaRepository.findById(id);
 
         if (pessoa == null) {
-            throw new NoSuchElementException();
+            pessoa = createPessoaDefault();
         }
 
         return toPessoaDTO(pessoa);
+    }
+
+    public String findByNomeAndIdade(String nome, long idade) {
+        Pessoa pessoa = pessoaRepository.findByNomeAndIdade(nome, idade);
+
+        if (pessoa == null) {
+            throw new NoSuchElementException();
+        }
+
+        return pessoa.getNome().toUpperCase();
+    }
+
+    private Pessoa createPessoaDefault() {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Nome Default");
+        pessoa.setIdade(20L);
+        pessoa.setTipoPessoa(1L);
+
+        return pessoaRepository.save(pessoa);
     }
 
     private PessoaDTO toPessoaDTO(Pessoa pessoa){

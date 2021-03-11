@@ -21,7 +21,12 @@ public class PessoaController {
     }
 
     @GetMapping("/pessoa")
-    public PessoaDTO findById(@RequestParam(name = "id") long id){
+    public PessoaDTO searchById(@RequestParam(name = "id") long id){
         return pessoaBusiness.findById(id);
+    }
+
+    @GetMapping("/pessoa-upppercase")
+    public String searchByNameUpppercase(@RequestParam(name = "nome") String nome, @RequestParam(name = "idade") long idade){
+        return pessoaBusiness.findByNomeAndIdade(nome, idade);
     }
 }

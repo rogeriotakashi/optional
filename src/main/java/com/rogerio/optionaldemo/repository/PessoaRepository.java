@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
     Pessoa findById(long id);
+
+    Pessoa findByNomeAndIdade(String nome, long idade);
+
 }
