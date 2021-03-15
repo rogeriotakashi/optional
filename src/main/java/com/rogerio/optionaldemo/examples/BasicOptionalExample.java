@@ -1,10 +1,10 @@
-package com.rogerio.optionaldemo;
+package com.rogerio.optionaldemo.examples;
 
 import com.rogerio.optionaldemo.dtos.PessoaDTO;
 
 import java.util.Optional;
 
-public class example001 {
+public class BasicOptionalExample {
 
     public static void main(String[] args) {
         String texto = "texto";
