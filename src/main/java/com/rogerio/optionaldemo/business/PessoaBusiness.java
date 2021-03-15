@@ -28,6 +28,9 @@ public class PessoaBusiness {
                 .collect(toList());
     }
 
+    /**
+     *  Fluxo não pode continuar caso não encontre a pessoa!
+     */
     public PessoaDTO findById(long id) {
         Pessoa pessoa = pessoaRepository.findById(id);
 
@@ -37,12 +40,27 @@ public class PessoaBusiness {
 
         return toPessoaDTO(pessoa);
     }
-
+    /**
+     *  Fluxo pode continuar caso não encontre a pessoa! Gera um novo registro pessoa
+     */
     public PessoaDTO findByNomeAndIdade(String nome, long idade) {
         Pessoa pessoa = pessoaRepository.findByNomeAndIdade(nome, idade);
 
         if (pessoa == null) {
             pessoa = createPessoaDefault(nome, idade);
+        }
+
+        return toPessoaDTO(pessoa);
+    }
+
+    /**
+     *  Fluxo pode continuar caso não encontre a pessoa! retorna nulo
+     */
+    public PessoaDTO findByNomeAndIdadePreExistente(String nome, long idade) {
+        Pessoa pessoa = pessoaRepository.findByNomeAndIdade(nome, idade);
+
+        if (pessoa == null) {
+            return null;
         }
 
         return toPessoaDTO(pessoa);

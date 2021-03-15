@@ -4,9 +4,7 @@ import com.rogerio.optionaldemo.business.ContaBusiness;
 import com.rogerio.optionaldemo.business.PessoaBusiness;
 import com.rogerio.optionaldemo.dtos.PessoaDTO;
 import com.rogerio.optionaldemo.entity.Conta;
-import com.rogerio.optionaldemo.entity.Pessoa;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,16 +20,16 @@ public class ContaService {
         return contaBusiness.findAll();
     }
 
-    public void createContaByIdPessoa(long idPessoa){
-        PessoaDTO pessoa = pessoaBusiness.findById(idPessoa);
+    public void createContaByIdPessoa(String nome, long idade){
+        PessoaDTO pessoa = pessoaBusiness.findByNomeAndIdadePreExistente(nome, idade);
 
         if(pessoa != null){
-            Conta conta = contaBusiness.findByIdPessoa(idPessoa);
+            Conta conta = contaBusiness.findByIdPessoa(pessoa.getId());
             if(conta == null) {
                 Conta contaNova = new Conta();
                 contaNova.setAgencia(1L);
                 contaNova.setNumConta("1234");
-                contaNova.setIdPessoa(idPessoa);
+                contaNova.setIdPessoa(5678L);
                 contaBusiness.save(contaNova);
             }
         }

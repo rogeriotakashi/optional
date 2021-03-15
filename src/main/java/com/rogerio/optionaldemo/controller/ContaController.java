@@ -16,8 +16,8 @@ public class ContaController {
     private final ContaService contaService;
 
     @GetMapping("/conta/new")
-    public void createConta(@RequestParam(name = "idPessoa") long idPessoa){
-        contaService.createContaByIdPessoa(idPessoa);
+    public void createConta(@RequestParam(name = "nome") String nome, @RequestParam(name = "idade") long idade){
+        contaService.createContaByIdPessoa(nome, idade);
     }
 
     @GetMapping("/conta")
