@@ -18,11 +18,11 @@ public class BadPracticesExamples {
         funcionario.setTelefone(Optional.of("99999-9999"));
         funcionario.setCnh(Optional.of(new CNH()));
         System.out.println(funcionario);
-        print(funcionario.getNome(), funcionario.getCpf(), funcionario.getTelefone(), funcionario.getCnh());
 
         funcionario.setTelefone(null);
         funcionario.setCnh(null);
-        System.out.println(funcionario);
+        System.out.println(funcionario.getTelefone());
+        System.out.println(funcionario.getCnh());
 
 
 
@@ -49,15 +49,6 @@ public class BadPracticesExamples {
         // ...
         // ...
         return statusFinal;
-    }
-
-    public static void print(String nome, String cpf, Optional<String> telefone, Optional<CNH> cnh){
-        System.out.println("---------------------");
-        System.out.println(nome);
-        System.out.println(cpf);
-        telefone.ifPresent(System.out::println);
-        cnh.ifPresent(System.out::println);
-        System.out.println("---------------------");
     }
 }
 
