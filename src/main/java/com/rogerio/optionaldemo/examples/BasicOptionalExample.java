@@ -13,21 +13,26 @@ public class BasicOptionalExample {
         System.out.println("String sem Optional: "+ texto);
         System.out.println("String com Optional: "+ textoOpt.get());
 
+        // Optional.empty()
+        Optional<PessoaDTO> empty = Optional.empty();
+        System.out.println("Empty Optional: "+ empty);
+
+        // .of()
         PessoaDTO pessoaDTO = new PessoaDTO();
         Optional<PessoaDTO> pessoaDTOOpt = Optional.of(pessoaDTO);
 
         System.out.println("PessoaDTO sem Optional: "+ pessoaDTO);
         System.out.println("PessoaDTO com Optional: "+ pessoaDTOOpt);
 
-        // Optional vazio
+        // ofNullable
         Optional<PessoaDTO> nullOpt = Optional.ofNullable(null);
-        System.out.println("null com Optional: "+ nullOpt);
+        System.out.println("Optional com ofNullable: "+ nullOpt);
 
         // get() lança NoSuchElementException!
 //        Optional<PessoaDTO> nullOpt2 = Optional.ofNullable(null);
 //        System.out.println("null com Optional 2 : "+ nullOpt2.get());
 
-        // Maldade no coração
+        // Anti-Pattern
 //        Optional<PessoaDTO> nullOpt3 = null;
 //        System.out.println("null com Optional 3: "+ nullOpt3.get());
     }
