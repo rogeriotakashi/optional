@@ -8,21 +8,29 @@ public class MapExample {
 
     public static void main(String[] args) {
 
-        Optional<PessoaDTO> pessoaOpt = Optional.of(new PessoaDTO(1L, "rogerio", 25, "F"));
+        Optional<PessoaDTO> pessoaOpt = Optional.of(new PessoaDTO(1L, null, 25, "F"));
         System.out.println(pessoaOpt);
 
-        PessoaDTO pessoaDTO = pessoaOpt.get();
+        // (T) -> (U)
+
+        String nomeOpt = pessoaOpt
+                .map(PessoaDTO::getNome)
+                .map(String::toUpperCase)
+                .orElse("Valor Default");
+
+        System.out.println(nomeOpt);
+        //PessoaDTO pessoaDTO = pessoaOpt.get();
 
         // Nome da pessoa em UpperCase
-        String nomeUppercase = pessoaDTO.getNome().toUpperCase();
-        System.out.println(nomeUppercase);
+//        String nomeUppercase = pessoaDTO.getNome().toUpperCase();
+//        System.out.println(nomeUppercase);
 
         // Nome da pessoal em Uppercase e caso seja nulo, quero que venha um "Valor Default"
+//        String nomeUppercase= "";
 //        if (pessoaDTO.getNome() != null){
 //            nomeUppercase = pessoaDTO.getNome().toUpperCase();
 //        } else {
 //            nomeUppercase = "Valor Default";
 //        }
-//        System.out.println(nomeUppercase);
     }
 }

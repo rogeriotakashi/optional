@@ -11,7 +11,7 @@ public class OrElseExample {
         String resultado = texto.orElse(getTextoDefault());
 
         Optional<String> texto2 = Optional.empty();
-        String resultado2 = texto2.orElse(getTextoDefault());
+        String resultado2 = texto2.orElse("getTextoDefault()");
 
         System.out.println(resultado);
         System.out.println(resultado2);

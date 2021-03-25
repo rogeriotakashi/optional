@@ -29,11 +29,14 @@ public class BasicOptionalExample {
         System.out.println("Optional com ofNullable: "+ nullOpt);
 
         // get() lança NoSuchElementException!
-//        Optional<PessoaDTO> nullOpt2 = Optional.ofNullable(null);
-//        System.out.println("null com Optional 2 : "+ nullOpt2.get());
+        Optional<PessoaDTO> nullOpt2 = Optional.ofNullable(null);
+        if (nullOpt2.isPresent()) {
+            System.out.println("null com Optional 2 : "+ nullOpt2.get());
+        }
+
 
         // Anti-Pattern
-//        Optional<PessoaDTO> nullOpt3 = null;
-//        System.out.println("null com Optional 3: "+ nullOpt3.get());
+        Optional<PessoaDTO> nullOpt3 = null;
+        System.out.println("null com Optional 3: "+ nullOpt3.get());
     }
 }
