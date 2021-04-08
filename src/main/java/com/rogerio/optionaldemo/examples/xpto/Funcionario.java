@@ -10,10 +10,10 @@ public class Funcionario implements Serializable {
 
     private String nome;
     private String cpf;
-    private Optional<String> telefone;
-    private Optional<CNH> cnh;
+    private String telefone;
+    private CNH cnh;
 
-    public Funcionario(String nome, String cpf, Optional<String> telefone, Optional<CNH> cnh) {
+    public Funcionario(String nome, String cpf, String telefone, CNH cnh) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -24,23 +24,19 @@ public class Funcionario implements Serializable {
         return nome;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
     public Optional<String> getTelefone() {
-        return telefone;
+        return Optional.ofNullable(telefone);
     }
 
     public Optional<CNH> getCnh() {
-        return cnh;
+        return Optional.ofNullable(cnh);
     }
 
-    public void setTelefone(Optional<String> telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public void setCnh(Optional<CNH> cnh) {
+    public void setCnh(CNH cnh) {
         this.cnh = cnh;
     }
 }

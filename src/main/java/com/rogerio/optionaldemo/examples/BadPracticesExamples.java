@@ -12,11 +12,11 @@ public class BadPracticesExamples {
 
     public static void main(String[] args) {
 
-        Funcionario funcionario = new Funcionario("rogerio","123456789", Optional.empty(), Optional.empty());
+        Funcionario funcionario = new Funcionario("rogerio","123456789", "", null);
         System.out.println(funcionario);
 
-        funcionario.setTelefone(Optional.of("99999-9999"));
-        funcionario.setCnh(Optional.of(new CNH()));
+        funcionario.setTelefone("99999-9999");
+        funcionario.setCnh(new CNH());
         System.out.println(funcionario);
 
         funcionario.setTelefone(null);
@@ -25,18 +25,17 @@ public class BadPracticesExamples {
         System.out.println(funcionario.getCnh());
 
 
-
         // Serializable example
-//        try {
-//            FileOutputStream fileOut = new FileOutputStream("/tmp/funcionario.xpto");
-//            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-//            out.writeObject(funcionario);
-//            out.close();
-//            fileOut.close();
-//            System.out.printf("Serialized data is saved in /tmp/employee.ser");
-//        } catch (IOException i) {
-//            i.printStackTrace();
-//        }
+        try {
+            FileOutputStream fileOut = new FileOutputStream("/tmp/funcionario.xpto");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(funcionario);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 
     public static String getStatus(){

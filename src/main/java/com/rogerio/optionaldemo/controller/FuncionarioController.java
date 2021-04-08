@@ -17,7 +17,7 @@ public class FuncionarioController {
 
     @GetMapping("/funcionario")
     public Funcionario find(){
-        Funcionario funcionario = new Funcionario("rogerio","123456789", Optional.empty(), Optional.empty());
+        Funcionario funcionario = new Funcionario("rogerio","123456789","", null);
 //        funcionario.setTelefone(Optional.of("99999-9999"));
 //        funcionario.setCnh(Optional.of(new CNH()));
 

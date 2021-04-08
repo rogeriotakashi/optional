@@ -2,6 +2,7 @@ package com.rogerio.optionaldemo.examples;
 
 
 import com.rogerio.optionaldemo.dtos.PessoaDTO;
+import com.rogerio.optionaldemo.utils.PessoaUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +23,15 @@ public class FilterExample {
 
         // Lets filter leonardo
         Optional<PessoaDTO> pessoaDTO = pessoaDTOS.stream()
-                                                    .filter(pessoa -> pessoa.getNome().equals("leonardo"))
+                                                    .filter(PessoaUtils::isLeonardo)
                                                     .findAny();
 
+
         // Poderia usar o PessoaUtils
-        boolean isPessoaFisica = pessoaDTO.filter(pessoa -> pessoa.getTipoPessoa().equals("F")).isPresent();
-        boolean isPessoaJuridica = pessoaDTO.filter(pessoa -> pessoa.getTipoPessoa().equals("J")).isPresent();
+        // (T) -> boolean
+
+        boolean isPessoaFisica = pessoaDTO.filter(PessoaUtils::isPessoaFisica).isPresent();
+        boolean isPessoaJuridica = pessoaDTO.filter(PessoaUtils::isPessoaJuridica).isPresent();
 
         System.out.println("-------- Filtros --------");
         System.out.println(pessoaDTO);
