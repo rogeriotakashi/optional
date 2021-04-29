@@ -9,6 +9,14 @@ public class GitExample {
         System.out.println(Calculadora.sub(x,y));
         System.out.println(Calculadora.mult(x,y));
         System.out.println(Calculadora.div(x,y));
+
+        featureMaster();
+    }
+
+    public static void featureMaster(){
+        System.out.println("I'm a feature from master branch!");
+
+        // TODO: Implementar essa parte
     }
 }
 
