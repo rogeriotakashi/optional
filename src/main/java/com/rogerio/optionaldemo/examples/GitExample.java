@@ -2,13 +2,19 @@ package com.rogerio.optionaldemo.examples;
 
 public class GitExample {
     public static void main(String[] args) {
-        System.out.println("Código da branch master");
+        System.out.println("Código da branch Feature B");
         int x = 1;
         int y = 2;
         System.out.println(Calculadora.soma(x,y));
         System.out.println(Calculadora.sub(x,y));
         System.out.println(Calculadora.mult(x,y));
         System.out.println(Calculadora.div(x,y));
+
+        featureB();
+    }
+
+    public static void featureB(){
+        System.out.println("Feature B implemented here");
     }
 }
 
